@@ -3,8 +3,8 @@
     background-color: rgb(104, 175, 128);
     width: 1001px;
     height: 40px;
-    font-size: x-large;
-    
+    margin-top: 21px;
+    font-size: x-large;    
 }
 
 #id::placeholder{
@@ -15,4 +15,14 @@
 #id1{
     display: flex;
     flex-direction: column;
+}
+
+input[type=text]{
+    padding: 12px 5px;
+    border-radius: 25px;
+    }
+
+#id3{
+    border: 2px solid rgb(105, 102, 102);
+    
 }
