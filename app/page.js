@@ -3,31 +3,30 @@ import styles from './page.module.css'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-
-
 const todos = ()=>{
   let list = localStorage.getItem("list")
-  console.log(JSON.parse(list))
-  
-  return JSON.parse(list)
-
+  if (!list) {
+    localStorage.setItem("list" , "[]");
+  } else {
+    return JSON.parse(list);   
+  }
 }
 
-export default function Home() {
-  
+
+
+export default function Home() {  
   const [text, setText] = useState("")
   const [todolist, setTodolist] = useState(todos())
   
   const clearall = (e)=>{
-    e.preventDefault();
+  e.preventDefault();
     setTodolist([])
-    localStorage.setItem("list" , JSON.stringify(todolist))
+    localStorage.setItem("list" , "[]")
   }
+
   useEffect(() => {
     setTodolist(todos())
-  }, [text])
-  
-  
+  }, [text])  
 
   const addfunction = (e) => {
     e.preventDefault();
@@ -38,11 +37,8 @@ export default function Home() {
     }
   }
 
-  const removeitem = (todolist,id)=>{
-  
+  const removeitem = (todolist,id)=>{  
   }
-
-
 
   return (
     <main className={styles.main}>
@@ -57,7 +53,7 @@ export default function Home() {
       </form>
       <ol>
       {todolist.map((key)=>{
-        return <li> {key} </li>
+        return <li key={Math.random()}> {key} </li>
       })}
       </ol>
       
