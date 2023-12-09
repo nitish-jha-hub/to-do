@@ -3,6 +3,7 @@ import styles from './page.module.css'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
+let list = localStorage.getItem("list")
 const todos = ()=>{
   let list = localStorage.getItem("list")
   if (!list) {
@@ -11,7 +12,6 @@ const todos = ()=>{
     return JSON.parse(list);   
   }
 }
-
 
 
 export default function Home() {  
@@ -26,7 +26,8 @@ export default function Home() {
 
   useEffect(() => {
     setTodolist(todos())
-  }, [text])  
+    list = localStorage.getItem("list")
+  }, [text,list])  
 
   const addfunction = (e) => {
     e.preventDefault();
@@ -52,8 +53,8 @@ export default function Home() {
         <button onClick={clearall}>clear all</button>
       </form>
       <ol>
-      {todolist.map((key)=>{
-        return <li key={Math.random()}> {key} </li>
+      {list && todolist.map((value)=>{
+        return <li key={Math.random()}> {value} </li>
       })}
       </ol>
       
